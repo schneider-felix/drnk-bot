@@ -13,6 +13,9 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import de.d_rnk.bot.AudioController;
 import de.d_rnk.bot.GuildAudioManager;
 
+import java.util.logging.Logger;
+
+import static de.d_rnk.bot.Bot.logCommand;
 import static de.d_rnk.bot.Bot.playerManager;
 
 @CommandInfo(
@@ -55,7 +58,7 @@ public class PlayCommand extends Command {
 
                 @Override
                 public void noMatches() {
-                    commandEvent.replyError("Could not find that song :(");
+                    commandEvent.replyError("Unable to find that song :(");
                 }
 
                 @Override

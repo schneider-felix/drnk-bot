@@ -9,6 +9,10 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 
+import java.util.logging.Logger;
+
+import static de.d_rnk.bot.Bot.logCommand;
+
 @CommandInfo(
         name = "Join",
         description = "Joins the users current voice channel."
@@ -24,6 +28,8 @@ public class JoinCommand extends Command {
 
     @Override
     protected void execute(CommandEvent commandEvent) {
+        logCommand(commandEvent);
+
         User author = commandEvent.getAuthor();
         Guild guild = commandEvent.getGuild();
         Member member = guild.getMember(author);

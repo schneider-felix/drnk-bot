@@ -7,6 +7,10 @@ import com.jagrosh.jdautilities.examples.doc.Author;
 import de.d_rnk.bot.AudioController;
 import net.dv8tion.jda.api.managers.AudioManager;
 
+import java.util.logging.Logger;
+
+import static de.d_rnk.bot.Bot.logCommand;
+
 @CommandInfo(
         name = "Leave",
         description = "Leave the current voice channel."
@@ -26,6 +30,8 @@ public class LeaveCommand extends Command {
 
     @Override
     protected void execute(CommandEvent commandEvent) {
+        logCommand(commandEvent);
+
         ac.getGuildAudioManager(commandEvent.getGuild()).player.stopTrack();
 
         AudioManager am = commandEvent.getGuild().getAudioManager();

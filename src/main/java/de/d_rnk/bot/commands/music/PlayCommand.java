@@ -33,6 +33,8 @@ public class PlayCommand extends Command {
 
     @Override
     protected void execute(CommandEvent commandEvent) {
+        logCommand(commandEvent);
+
         if (commandEvent.getGuild().getAudioManager().isConnected()) {
             String song = commandEvent.getArgs();
             GuildAudioManager am = ac.getGuildAudioManager(commandEvent.getGuild());

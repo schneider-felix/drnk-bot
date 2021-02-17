@@ -11,6 +11,10 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.TextChannel;
 
 import java.awt.*;
+import java.util.logging.Logger;
+
+import static de.d_rnk.bot.Bot.logCommand;
+import static de.d_rnk.bot.Bot.playerManager;
 
 @CommandInfo(
         name = "Queue",
@@ -31,6 +35,9 @@ public class QueueCommand extends Command {
 
     @Override
     protected void execute(CommandEvent commandEvent) {
+        logCommand(commandEvent);
+
+        GuildAudioManager am = ac.getGuildAudioManager(commandEvent.getGuild());
         if(commandEvent.getArgs().trim().length() == 0 || commandEvent.getArgs() == null){
             outputQueue(commandEvent.getGuild(), commandEvent.getTextChannel());
         }

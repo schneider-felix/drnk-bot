@@ -6,6 +6,10 @@ import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 import de.d_rnk.bot.AudioController;
 
+import java.util.logging.Logger;
+
+import static de.d_rnk.bot.Bot.logCommand;
+
 @CommandInfo(
         name = "Skip",
         description = "Skip the current song."
@@ -26,6 +30,8 @@ public class SkipCommand extends Command {
 
     @Override
     protected void execute(CommandEvent commandEvent) {
+        logCommand(commandEvent);
+
         ac.getGuildAudioManager(commandEvent.getGuild()).scheduler.nextTrack();
     }
 }

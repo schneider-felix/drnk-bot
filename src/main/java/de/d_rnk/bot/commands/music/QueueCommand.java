@@ -6,6 +6,8 @@ import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import de.d_rnk.bot.AudioController;
+import de.d_rnk.bot.GuildAudioManager;
+import de.d_rnk.bot.TrackScheduler;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -40,6 +42,13 @@ public class QueueCommand extends Command {
         GuildAudioManager am = ac.getGuildAudioManager(commandEvent.getGuild());
         if(commandEvent.getArgs().trim().length() == 0 || commandEvent.getArgs() == null){
             outputQueue(commandEvent.getGuild(), commandEvent.getTextChannel());
+        }else if(commandEvent.getArgs().trim().split(" ")[0].equals("clear")){
+            commandEvent.reply("Removed " +am.scheduler.getQueueLength() +" objects from the queue.");
+            am.scheduler.clearQueue();
+        }else if(commandEvent.getArgs().trim().split(" ")[0].equals("add") && commandEvent.getArgs().trim().split(" ").length == 2){
+            am.scheduler.loadAudioTracks(commandEvent.getArgs().trim().split(" ")[1], 0, commandEvent.getTextChannel());
+        }else if(commandEvent.getArgs().trim().split(" ")[0].equals("next") && commandEvent.getArgs().trim().split(" ").length == 2){
+            am.scheduler.loadAudioTracks(commandEvent.getArgs().trim().split(" ")[1], 1, commandEvent.getTextChannel());
         }
     }
 

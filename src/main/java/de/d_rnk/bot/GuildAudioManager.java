@@ -27,7 +27,7 @@ public class GuildAudioManager {
      */
     public GuildAudioManager(AudioPlayerManager manager) {
         player = manager.createPlayer();
-        scheduler = new TrackScheduler(player);
+        scheduler = new TrackScheduler(player, this);
         player.addListener(scheduler);
     }
 
